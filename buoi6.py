@@ -1,5 +1,5 @@
 import random
-
+import string
 # Bài 1
 xucxac = [1, 2, 3, 4, 5, 6]
 print("Bạn đã gieo ra mặt: ", random.choice(xucxac))
@@ -67,3 +67,45 @@ for i in range(1, 4):
     
 
     print(f"{i}. {pass_ngau_nhien}")
+#Bai 9:
+n = int(input("Nhập độ dài N: "))
+if n >= 4:
+  p = [
+      random.choice(string.ascii_lowercase),
+      random.choice(string.ascii_uppercase),
+      random.choice(string.digits),
+      random.choice("!@#$%^&*"),
+  ]
+  all_c = (
+      string.ascii_lowercase
+      + string.ascii_uppercase
+      + string.digits
+      + "!@#$%^&*"
+  )
+  p += [random.choice(all_c) for _ in range(n - 4)]
+  random.shuffle(p)
+  print("Mật khẩu chuẩn:", "".join(p))
+
+
+# bai 10
+n = int(input("Nhập độ dài mật khẩu: "))
+u = input("Có muốn bao gồm chữ hoa (Y/N)? ").strip().upper() == "Y"
+d = input("Có muốn bao gồm chữ số (Y/N)? ").strip().upper() == "Y"
+s = input("Có muốn bao gồm ký tự đặc biệt (Y/N)? ").strip().upper() == "Y"
+
+chars = string.ascii_lowercase
+p = [random.choice(string.ascii_lowercase)]
+
+if u:
+  chars += string.ascii_uppercase
+  p.append(random.choice(string.ascii_uppercase))
+if d:
+  chars += string.digits
+  p.append(random.choice(string.digits))
+if s:
+  chars += "!@#$%^&*"
+  p.append(random.choice("!@#$%^&*"))
+
+p += [random.choice(chars) for _ in range(n - len(p))]
+random.shuffle(p)
+print("Mật khẩu tùy chỉnh:", "".join(p))
